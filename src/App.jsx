@@ -1,16 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import VideoComponent from "./components/VideoComponent";
+import Body from "./components/Body";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <div>
+          <Body />
+        </div>
+      ),
+      children: [
+        {
+          path: "/",
+          element: (
+            <div>
+              <VideoComponent />
+            </div>
+          ),
+        },
+      ],
+    },
+    {},
+  ]);
 
   return (
     <>
-     <div className="text-xl bg-white text-gray-800 ">hello</div>
+      <div className="bg-[#F6F8FC] w-screen h-screen overflow-hidden ">
+        <Navbar />
+        <RouterProvider router={router}/>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
