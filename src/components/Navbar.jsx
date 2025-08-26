@@ -26,14 +26,14 @@ const Navbar = () => {
           />
         </div>
         <div className="flex items-center w-[40%] ">
-          <div className="w-[100%] py-2 flex items-center justify-between px-2 border-1 border-gray-400 focus-within:outline-1 outline-blue-500 rounded-l-full ">
-            <div className="text-gray-500 focus-within:hidden">
+          <div className="w-[100%] group py-2 flex items-center justify-between px-2 border-1 border-gray-400 focus-within:outline-1 outline-blue-500 rounded-l-full ">
+            <div className="text-gray-500 group-focus-within:hidden">
               <IoSearch size={"20px"} />
             </div>
             <input
               type="text"
               placeholder="Search"
-              className="outline-none px-1 w-full bg-transparent"
+              className="outline-none  px-1 w-full bg-transparent"
             />
           </div>
           <button

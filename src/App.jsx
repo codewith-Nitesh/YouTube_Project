@@ -4,9 +4,10 @@ import Navbar from "./components/Navbar";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import VideoComponent from "./components/VideoComponent";
 import Body from "./components/Body";
+import Feed from "./components/Feed";
+import VideoDetail from "./components/videoDetail";
 
-function App() {
-  const router = createBrowserRouter([
+ const router = createBrowserRouter([
     {
       path: "/",
       element: (
@@ -19,7 +20,15 @@ function App() {
           path: "/",
           element: (
             <div>
-              <VideoComponent />
+              <Feed/>
+            </div>
+          ),
+        },
+          {
+          path: "/watch_youtube",
+          element: (
+            <div>
+              <VideoDetail/>
             </div>
           ),
         },
@@ -27,6 +36,8 @@ function App() {
     },
     {},
   ]);
+
+function App() {
 
   return (
     <>

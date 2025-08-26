@@ -1,9 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const ButtonList = () => {
-  const buttonList = [
+
+    const buttonList = [
     "All",
     "Javascript",
     "Java",
@@ -26,6 +28,17 @@ const ButtonList = () => {
     "Meta",
   ];
 
+  const {open} = useSelector((store) => store.sliceAction)
+  const [active,setActive] = useState(buttonList[0])
+
+  const setvideoCategory = (tag) =>{
+    if(active !== tag){
+      setActive(tag)
+    }
+  }
+
+  console.log(active)
+
   const scrollRef = useRef();
 
   const scrollLeft = () => {
@@ -37,27 +50,28 @@ const ButtonList = () => {
   };
 
   return (
-    <div className="flex overflow-y-hidden items-center overflow-x-hidden gap-3 whitespace-nowrap p-2 h-10 ">
+    <div className={`${open ? "flex fixed top-13 -left-1 right-0 bg-[#F6F8FC] overflow-y-hidden items-center gap-3 whitespace-nowrap p-2 h-12 w-[98.8%] z-20" : "flex fixed top-13 left-74 right-0 bg-[#F6F8FC] overflow-y-hidden items-center gap-3 whitespace-nowrap p-2 h-12 w-[83.5%] z-20"}, transition-all duration-250`}>
       <button
         onClick={scrollLeft}
-        className="bg-gray-500 cursor-pointer rounded-full p-2.5 absolute z-20 "
+        className="bg-gray-500 cursor-pointer rounded-full p-1.5 absolute z-30 left-0 "
       >
         <FaAngleLeft />
       </button>
       <button
         onClick={scrollRight}
-        className="bg-gray-500 cursor-pointer rounded-full p-2.5 absolute z-20 right-1 "
+        className="absolute right-0 z-30 bg-gray-500 cursor-pointer rounded-full p-1.5 "
       >
         <FaAngleRight />
       </button>
       <div
         ref={scrollRef}
-        className="flex items-center overflow-x-auto scrollbar-hide gap-3 scroll-smooth font-medium w-auto "
+        className="flex items-center overflow-x-scroll scrollbar-hide gap-3 scroll-smooth font-medium "
       >
         {buttonList.map((buttonList, index) => (
           <button
+          onClick={()=>setvideoCategory(buttonList)}
             key={index}
-            className="bg-gray-300  focus:bg-gray-400  px-4 py-1 rounded-lg cursor-pointer"
+            className={`${active === buttonList ? "bg-gray-800 text-white " : ""} bg-gray-300 px-4 py-1 rounded-lg cursor-pointer`}
           >
             <div>{buttonList}</div>
           </button>
