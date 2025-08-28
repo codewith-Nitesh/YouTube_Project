@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosNotifications } from "react-icons/io";
 import { FaVideo } from "react-icons/fa";
@@ -6,11 +6,15 @@ import Avatar from "react-avatar";
 import { IoSearch } from "react-icons/io5";
 import { FaMicrophone } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpen } from "../ReduxStore/slice";
+import { setCategory, setOpen } from "../ReduxStore/slice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const {open} = useSelector((store) => store.sliceAction)
+  const [input, setInput] = useState("")
+  const searchVideo = () =>{
+    dispatch(setCategory(input))
+  }
   return (
     <div className="w-full">
       <div className="flex p-1.5 px-5 items-center justify-between ">
@@ -34,13 +38,22 @@ const Navbar = () => {
               type="text"
               placeholder="Search"
               className="outline-none  px-1 w-full bg-transparent"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if(e.key === "Enter"){
+                  e.preventDefault();
+                  searchVideo();
+                }
+              }}
             />
           </div>
           <button
             type="button"
             className="py-2 px-3 border-1 border-l-0 rounded-r-full border-gray-400"
+            onClick={searchVideo}
           >
-            <IoSearch size={"24px"} />
+            <IoSearch size={"24px"}  />
           </button>
           <div className="ml-5">
             <FaMicrophone size={"22px"} />

@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { setCategory } from "../ReduxStore/slice";
 const ButtonList = () => {
 
     const buttonList = [
@@ -30,9 +30,11 @@ const ButtonList = () => {
 
   const {open} = useSelector((store) => store.sliceAction)
   const [active,setActive] = useState(buttonList[0])
+  const dispatch = useDispatch();
 
   const setvideoCategory = (tag) =>{
     if(active !== tag){
+      dispatch(setCategory(tag))
       setActive(tag)
     }
   }

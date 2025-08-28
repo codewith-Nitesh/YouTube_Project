@@ -9,7 +9,7 @@ const [avatar, setAvatar]= useState("")
   const fetchChannelAvatar = async () =>{
      try {
       const res = await axios.get(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${item.snippet?.channelId}&key=${API_KEY}`)
-      setAvatar(res.data.items[0].snippet.thumbnails.high.url)
+      setAvatar(res.data?.items[0]?.snippet?.thumbnails?.high?.url)
      } catch (error) {
       console.log(error)
      }
@@ -35,7 +35,7 @@ const [avatar, setAvatar]= useState("")
           </div>
           <div className="flex flex-col justify-center max-w-[90%]">
             <p className="truncate inline-block font-semibold">
-              {item.snippet?.title}
+              {item?.snippet?.title}
             </p>
             <span className="text-gray-800 font-light">{item.snippet?.channelTitle}</span>
           </div>
