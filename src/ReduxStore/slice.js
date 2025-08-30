@@ -5,7 +5,9 @@ const sliceAction = createSlice({
   initialState: {
     open: false,
     video:[],
-    category:"All"
+    category:"All",
+    searchSuggestion:[],
+    selectedTopic:[]
   },
   reducers: {
     setOpen: (state,action) => {
@@ -16,9 +18,15 @@ const sliceAction = createSlice({
     },
     setCategory:(state,action)=>{
       state.category = action.payload
+    },
+    setSearchSuggestion:(state,action)=>{
+      state.searchSuggestion = action.payload
+    },
+    setSelectedTopic:(state,action) =>{
+      state.selectedTopic = action.payload;
     }
   },
 });
 
-export const {setOpen, setYoutubeVideo,setCategory} = sliceAction.actions;
+export const {setOpen, setYoutubeVideo,setCategory,setSearchSuggestion,setSelectedTopic} = sliceAction.actions;
 export default sliceAction.reducer;
