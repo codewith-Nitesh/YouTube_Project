@@ -7,7 +7,7 @@ const sliceAction = createSlice({
     video:[],
     category:"All",
     searchSuggestion:[],
-    selectedTopic:[]
+    darkMode:false,
   },
   reducers: {
     setOpen: (state,action) => {
@@ -22,11 +22,11 @@ const sliceAction = createSlice({
     setSearchSuggestion:(state,action)=>{
       state.searchSuggestion = action.payload
     },
-    setSelectedTopic:(state,action) =>{
-      state.selectedTopic = action.payload;
+    setdarkMode:(state,action) =>{
+      state.darkMode = action.payload;
     }
   },
 });
 
-export const {setOpen, setYoutubeVideo,setCategory,setSearchSuggestion,setSelectedTopic} = sliceAction.actions;
+export const {setOpen, setYoutubeVideo,setCategory,setSearchSuggestion,setdarkMode} = sliceAction.actions;
 export default sliceAction.reducer;

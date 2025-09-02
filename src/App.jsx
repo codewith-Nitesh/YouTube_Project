@@ -6,6 +6,7 @@ import VideoComponent from "./components/VideoComponent";
 import Body from "./components/Body";
 import Feed from "./components/Feed";
 import VideoDetail from "./components/videoDetail";
+import { useSelector } from "react-redux";
 
  const router = createBrowserRouter([
     {
@@ -39,9 +40,11 @@ import VideoDetail from "./components/videoDetail";
 
 function App() {
 
+  const {darkMode} = useSelector((store) => store.sliceAction)
+
   return (
     <>
-      <div className="bg-[#F6F8FC] w-screen h-screen overflow-hidden ">
+      <div className={`${darkMode ? "bg-[#111827] text-[#f9FAFB] " : "bg-[#F9FAFB] text-[#111827] "} w-screen h-screen overflow-hidden `}>
         <Navbar />
         <RouterProvider router={router}/>
       </div>

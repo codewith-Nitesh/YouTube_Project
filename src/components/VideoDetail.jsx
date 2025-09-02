@@ -15,7 +15,7 @@ import { FiX } from "react-icons/fi";
 import { SlArrowDown } from "react-icons/sl";
 import { IoMdSend } from "react-icons/io";
 import LiveChat from "./LiveChat";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUserMessage } from "../ReduxStore/chatSlice";
 
 const VideoDetail = () => {
@@ -24,6 +24,7 @@ const VideoDetail = () => {
   const video_Id = searchParams.get("v");
   const [message, setMessage] = useState(null);
   const dispatch = useDispatch();
+  const {darkMode} = useSelector((store)=>store.sliceAction)
   console.log("video id :", video_Id);
 
   const sendMessage = () => {
@@ -51,8 +52,8 @@ const VideoDetail = () => {
   console.log(singleVideo);
 
   return (
-    <div className="px-12 pt-2 h-screen flex gap-8">
-      <div className="h-[100vh] w-[60%]">
+    <div className="px-12 pt-2 h-screen flex xl:gap-8 max-xl:flex-col max-xl:gap-y-6 ">
+      <div className="max-xl:w-[100%] w-[70%]">
         <iframe
           className="w-full"
           height="500"
@@ -74,33 +75,33 @@ const VideoDetail = () => {
                 <span>368k subscriber</span>
               </div>
             </div>
-            <div className="flex items-center gap-1.5 bg-gray-300 p-2 rounded-full cursor-pointer">
+            <div className={`flex items-center gap-1.5 p-2 rounded-full cursor-pointer ${darkMode ? "bg-[#60A5FA] hover:bg-[#3B82F6]" : "bg-gray-200 hover:bg-gray-300"}`}>
               <FaBell className="text-xl" />
               Subscribed
               <RiArrowDownWideLine className="text-xl" />
             </div>
           </div>
           <div className="flex items-center p-2 gap-4  ">
-            <div className="flex cursor-pointer items-center gap-2 bg-gray-300 p-2 px-3 rounded-full">
+            <div className={`flex cursor-pointer items-center gap-2  p-2 px-3 rounded-full  ${darkMode ? "bg-[#60A5FA] hover:bg-[#3B82F6]" : "bg-gray-200 hover:bg-gray-300"}`}>
               <BiLike className="text-xl" />
               <span>1.9k</span>
               <BiDislike className="text-xl" />
             </div>
-            <div className="flex items-center gap-1 bg-gray-300 p-2 px-3 rounded-full cursor-pointer">
+            <div className={`flex items-center gap-1 p-2 px-3 rounded-full cursor-pointer  ${darkMode ? "bg-[#60A5FA] hover:bg-[#3B82F6]" : "bg-gray-200 hover:bg-gray-300"}`}>
               <IoIosShareAlt className="text-xl" />
               <span>share</span>
             </div>
-            <div className="flex cursor-pointer items-center gap-1 bg-gray-300 p-2 px-3 rounded-full">
+            <div className={`flex cursor-pointer items-center gap-1 p-2 px-3 rounded-full  ${darkMode ? "bg-[#60A5FA] hover:bg-[#3B82F6]" : "bg-gray-200 hover:bg-gray-300"}`}>
               <TfiDownload className="text-xl" />
               <span>Download</span>
             </div>
-            <div className="flex cursor-pointer text-xl items-center gap-1 bg-gray-300 p-2 px-3 rounded-full">
+            <div className={`flex cursor-pointer text-xl items-center gap-1 p-2 px-3 rounded-full  ${darkMode ? "bg-[#60A5FA] hover:bg-[#3B82F6]" : "bg-gray-200 hover:bg-gray-300"}`}>
               <PiDotsThreeBold />
             </div>
           </div>
         </div>
       </div>
-      <div className="h-[100vh] w-[40%] p-0.5 ">
+      <div className="max-xl:w-[100%] w-[30%] p-0.5 mb-12">
         <div className="border border-gray-200 rounded-sm p-1 ">
           <div className="flex items-center justify-between p-2 border-b-1 ">
             <div className="text-md flex items-center gap-1">

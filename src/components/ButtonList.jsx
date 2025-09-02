@@ -4,8 +4,7 @@ import { FaAngleRight } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategory } from "../ReduxStore/slice";
 const ButtonList = () => {
-
-    const buttonList = [
+  const buttonList = [
     "All",
     "Javascript",
     "Java",
@@ -28,34 +27,40 @@ const ButtonList = () => {
     "Meta",
   ];
 
-  const {open} = useSelector((store) => store.sliceAction)
-  const [active,setActive] = useState(buttonList[0])
+  const { open } = useSelector((store) => store.sliceAction);
+  const [active, setActive] = useState(buttonList[0]);
   const dispatch = useDispatch();
+  const { darkMode } = useSelector((store) => store.sliceAction);
 
-  const setvideoCategory = (tag) =>{
-    if(active !== tag){
-      dispatch(setCategory(tag))
-      setActive(tag)
+  const setvideoCategory = (tag) => {
+    if (active !== tag) {
+      dispatch(setCategory(tag));
+      setActive(tag);
     }
-  }
+  };
 
-  console.log(active)
+  console.log(active);
 
   const scrollRef = useRef();
 
   const scrollLeft = () => {
-    scrollRef.current.scrollBy(-200,0);
+    scrollRef.current.scrollBy(-200, 0);
   };
 
   const scrollRight = () => {
-    scrollRef.current.scrollBy(200,0);
+    scrollRef.current.scrollBy(200, 0);
   };
 
   return (
-    <div className={`${open ? "flex fixed top-13 -left-1 right-0 bg-[#F6F8FC] overflow-y-hidden items-center gap-3 whitespace-nowrap p-2 h-12 w-[98.8%] z-20" : "flex fixed top-13 left-74 right-0 bg-[#F6F8FC] overflow-y-hidden items-center gap-3 whitespace-nowrap p-2 h-12 w-[83.5%] z-20"}, transition-all duration-250`}>
+    <div
+      className={`flex overflow-y-hidden items-center gap-3 whitespace-nowrap p-2 z-20
+      ${
+        darkMode ? "bg-[#111827] text-[#f9FAFB]" : "bg-[#F9FAFB] text-[#111827]"
+      } transition-all duration-250 buttonList relative`}
+    >
       <button
         onClick={scrollLeft}
-        className="bg-gray-500 cursor-pointer rounded-full p-1.5 absolute z-30 left-0 "
+        className="bg-gray-500 cursor-pointer rounded-full p-1.5 absolute z-30 left-1 "
       >
         <FaAngleLeft />
       </button>
@@ -71,9 +76,17 @@ const ButtonList = () => {
       >
         {buttonList.map((buttonList, index) => (
           <button
-          onClick={()=>setvideoCategory(buttonList)}
+            onClick={() => setvideoCategory(buttonList)}
             key={index}
-            className={`${active === buttonList ? "bg-gray-800 text-white " : ""} bg-gray-300 px-4 py-1 rounded-lg cursor-pointer`}
+            className={`${
+              active === buttonList
+                ? darkMode
+                  ? "bg-[#1D4ED8] text-white"
+                  : "bg-[#374151] text-white"
+                : darkMode
+                ? "bg-[#374151] text-gray-200"
+                : "bg-gray-300 text-black"
+            } px-4 py-1 rounded-lg cursor-pointer whitespace-nowrap`}
           >
             <div>{buttonList}</div>
           </button>

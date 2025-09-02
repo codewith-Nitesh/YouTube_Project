@@ -2,9 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
 import { API_KEY } from "../constant/youtube";
+import { useSelector } from "react-redux";
 
 const VideoCart = ({item}) => {
 const [avatar, setAvatar]= useState("")
+const {darkMode} = useSelector((store) => store.sliceAction)
 
   const fetchChannelAvatar = async () =>{
      try {
@@ -21,7 +23,7 @@ const [avatar, setAvatar]= useState("")
   
   return (
     <>
-      <div className="w-full group p-1.5 h-[400px] overflow-hidden rounded-md bg-gray-50 hover:bg-gray-200 transition-all duration-100">
+      <div className={`w-full group p-1.5 h-[400px] overflow-hidden rounded-md  transition-all duration-100 ${darkMode ? "hover:bg-[#1D4ED8] bg-[#111827]" : "hover:bg-gray-200 bg-gray-50"}`}>
         <div className="w-full h-80 bg-black overflow-hidden rounded-md transition-all duration-150 group-hover:rounded-none">
           <img
             className="object-fill w-full h-full "
@@ -37,7 +39,7 @@ const [avatar, setAvatar]= useState("")
             <p className="truncate inline-block font-semibold">
               {item?.snippet?.title}
             </p>
-            <span className="text-gray-800 font-light">{item.snippet?.channelTitle}</span>
+            <span className={`${darkMode ? "text-white" : "text-gray-800"} font-light`}>{item.snippet?.channelTitle}</span>
           </div>
         </div>
       </div>

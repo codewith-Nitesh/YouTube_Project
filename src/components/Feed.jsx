@@ -5,7 +5,9 @@ import VideoComponent from "./VideoComponent";
 const Feed = () => {
   return (
     <div>
-      <ButtonList />
+      <div className="sticky top-0 ">
+        <ButtonList />
+      </div>
       <VideoComponent />
     </div>
   );
